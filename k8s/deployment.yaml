@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-elysia
+  namespace: nodejs-elysia
+  labels:
+    app: nodejs-elysia
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-elysia
+  template:
+    metadata:
+      labels:
+        app: nodejs-elysia
+    spec:
+      containers:
+      - name: nodejs-elysia
+        image: nodejs-elysia
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+      restartPolicy: Always
